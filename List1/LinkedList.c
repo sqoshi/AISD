@@ -69,4 +69,7 @@ int Insert(List* list, int value) {
 int delete(List* list, int value){
     Node* current=list->head;
     Node* previous= NULL;
+    while(current!=NULL){
+
+    }
 }
