@@ -3,19 +3,13 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
+#include "LinkedList.h"
+
 
 int MTFcount = 0;
 int TRANScount = 0;
 
-typedef struct Node {
-    int value;
-    struct Node *next;
-} Node;
-typedef struct List {
-
-    unsigned int size;
-    Node *head;
-} List;
+List list;
 
 void InitList(List *list) {
     list->head = NULL;
@@ -35,7 +29,7 @@ void printList(List *list) {
     printf("NULL\n");
 }
 
-int isempty(List *list) {
+int isEmpty(List *list) {
     if (list->head == NULL) return 1;
     return 0;
 }
@@ -129,6 +123,7 @@ int findTRANS(List *list, int value) {
         previous = current;
         current = current->next;
     }
+    return 0;
 }
 
 int main(void) {
