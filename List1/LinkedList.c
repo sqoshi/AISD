@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "LinkedList.h"
+#include <time.h>
 
 
 int MTFcount = 0;
@@ -64,15 +65,17 @@ int Insert(List *list, int value) {
     return 1;
 }
 
-int delete(List *list, int value) {
+int Delete(List *list, int value) {
     Node *current = list->head;
     Node *previous = NULL;
     while (current != NULL) {
         if (current->value == value) {
             if (previous != NULL) {
-                previous->next = current->next;
+                previous->
+                        next = current->next;
             } else {
-                list->head = current->next;
+                list->
+                        head = current->next;
             }
             free(current);
             return 1;
@@ -82,6 +85,7 @@ int delete(List *list, int value) {
     }
     return 0;
 }
+
 
 int findMTF(List *list, int value) {
     Node *current = list->head;
@@ -94,10 +98,12 @@ int findMTF(List *list, int value) {
                 current->next = list->head;
                 list->head = current;
             }
+            return 1;
         }
         previous = current;
         current = current->next;
     }
+    return 0;
 }
 
 int findTRANS(List *list, int value) {
@@ -118,6 +124,7 @@ int findTRANS(List *list, int value) {
                     current->next;
                 }
             }
+            return 1;
         }
         preprevious = previous;
         previous = current;
@@ -127,27 +134,82 @@ int findTRANS(List *list, int value) {
 }
 
 int main(void) {
-    List list;
-    InitList(&list);
-    Insert(&list, 7);
-    Insert(&list, 8);
-    Insert(&list, 79);
-    Insert(&list, 71);
-    printList(&list);
-    List list1;
-    delete(&list, 79);
-    findTRANS(&list, 71);
-    printList(&list);
-    printf("********************\n");
-    InitList(&list1);
-    Insert(&list1, 7);
-    Insert(&list1, 8);
-    Insert(&list1, 79);
-    Insert(&list1, 71);
-    printList(&list1);
-    findMTF(&list1, 79);
-    printList(&list1);
-    isEmpty(&list1);
+    /*  List list;
+      InitList(&list);
+      Insert(&list, 7);
+      Insert(&list, 8);
+      Insert(&list, 79);
+      Insert(&list, 71);
+      printList(&list);
+      List list1;
+      deleteNode(&list, 79);
+      findTRANS(&list, 71);
+      printList(&list);
+      printf("********************\n");
+      InitList(&list1);
+      Insert(&list1, 7);
+      Insert(&list1, 8);
+      Insert(&list1, 79);
+      Insert(&list1, 71);
+      printList(&list1);
+      findMTF(&list1, 79);
+      printList(&list1);
+      isEmpty(&list1);*/
+
+    srand(time(NULL));
+    int tab[100];
+    for (int i = 0; i < 100; i++) {
+        int k;
+        while (1) {
+            k = 1 + rand() % 100;
+            int is = 0;
+            for (int j = 0; j < 100; j++) {
+                if (tab[j] == k) {
+                    is = 1;
+                    break;
+                }
+            }
+            if (is == 0) break;
+
+        }
+        tab[i] = k;
+    }
+    /*int x = 0;
+    while (x < 100) {
+        printf("%d ", tab[x]);
+        if(x==50) printf(".");
+        x++;
+    }*/
+    List *l1;
+    List *l2;
+    l1 = malloc(sizeof(List));
+    l2 = malloc(sizeof(List));
+    InitList(l1);
+    InitList(l2);
+
+    for (int i = 0; i < 100; i++) {
+        Insert(l1, tab[i]);
+        Insert(l2, tab[i]);
+    }
+
+    printList(l1);
+
+    for (int i = 100; i > 0; i--) {
+        for (int j = 1; j <= 100; ++j) {
+            findMTF(l1, j);
+        }
+        Delete(l1, i);
+    }
+    for (int i = 100; i > 0; i--) {
+        for (int j = 1; j <= 100; ++j) {
+            findTRANS(l2, j);
+        }
+        Delete(l2, i);
+    }
+
+    printf("MTF Comparisions: %d\n"
+           "TRANS Comparisions: %d\n", MTFcount, TRANScount);
+
     return 0;
 }
 

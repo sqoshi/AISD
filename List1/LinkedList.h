@@ -6,7 +6,7 @@
 #define LIST1_LINKEDLIST_H
 /**
  * Struct with pointer to next node
- * and key
+ * and key's value
  */
 typedef struct Node {
     int value;
@@ -14,7 +14,7 @@ typedef struct Node {
 } Node;
 
 /**
- * Head od the LinkedList
+ * Head of the LinkedList
  */
 typedef struct List {
 
@@ -52,7 +52,7 @@ int Insert(List *list, int value);
  * @param value
  * @return 1 if deleted succesfully, else 0
  */
-int delete(List *list, int value);
+int Delete(List *list, int value);
 /**
  * Finding element and moving it to the head.
  * @param list
