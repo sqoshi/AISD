@@ -147,6 +147,7 @@ int main(void) {
     printList(&list1);
     findMTF(&list1, 79);
     printList(&list1);
+    isEmpty(&list1);
     return 0;
 }
 
