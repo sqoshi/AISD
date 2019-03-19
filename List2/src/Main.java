@@ -31,6 +31,7 @@ public class Main {
             }
 
             if (args[1].equals("insert")) {
+                new InsertionSort(arrayToSort);
                 System.out.println("Using InsertionSort");
             }
             if (args[1].equals("heap")) {
