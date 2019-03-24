@@ -20,10 +20,10 @@ public class SelectSort {
             swapsCounter++;
 
         }
-        System.out.println("Comparisions: " + comparisionsCounter);
-        System.out.println("Swaps: " + swapsCounter);
+        System.out.println("\u001b[34mComparisions:\033[0m " + comparisionsCounter);
+        System.out.println("\u001b[34mSwaps:\033[0m " + swapsCounter);
         double stopTime = System.nanoTime();
         double elapsedTime = (stopTime - startTime)/(10^9);
-        System.out.println("SelectSort Execution time: " + elapsedTime+"s");
+        System.out.println("\u001b[1mSelection Sort Execution time: " + elapsedTime+"s\033[0m");
     }
 }

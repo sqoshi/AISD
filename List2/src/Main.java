@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
 
         System.out.println("\u001B[33mWelcome!\033[0m");
         if (args[0].equals("--type")) {
 
-            System.out.println("Sorting program v1.0");
+            System.out.println("Sorting program v1.8");
             Scanner sc = new Scanner(System.in);
             System.out.print("How many integers u wanna sort? :");
             int n = sc.nextInt();
@@ -23,16 +22,17 @@ public class Main {
 
 
             if (args[1].equals("select")) {
-                new SelectSort(arrayToSort);
                 System.out.println("Using SelectSort");
+                new SelectSort(arrayToSort);
             }
             if (args[1].equals("quick")) {
                 System.out.println("Using QuickSort");
             }
 
             if (args[1].equals("insert")) {
-                new InsertionSort(arrayToSort);
                 System.out.println("Using InsertionSort");
+                 new  InsertionSort(arrayToSort);
+
             }
             if (args[1].equals("heap")) {
                 System.out.println("Using HeapSort");
@@ -43,24 +43,15 @@ public class Main {
                         "There was not implemented Sort like: "
                                 + args[1]);
             }
+
             if (args[2].equals("--desc")) {
-                System.out.println("Sorting by the smallest to the biggest key");
-                for (int x :
-                        arrayToSort) {
-                    System.out.print(" | \033[31m" + x + "\033[0m");
-                }
-                System.out.println(" | ");
+                Alghoritms.printDESC(arrayToSort);
             }
             if (args[2].equals("--asc")) {
-                System.out.println("Sorting by the biggest ty the smallest key");
-                for (int i = arrayToSort.length - 1; i >= 0; i--) {
-                    System.out.print(" | \033[31m" + arrayToSort[i] + "\033[0m");
-                }
-                System.out.print(" | ");
+                Alghoritms.printASC(arrayToSort);
             }
 
         }
-
 
     }
 }
