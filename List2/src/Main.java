@@ -6,7 +6,6 @@ public class Main {
 
         System.out.println("\u001B[33mWelcome!\033[0m");
         if (args[0].equals("--type")) {
-
             System.out.println("Sorting program v1.8");
             Scanner sc = new Scanner(System.in);
             System.out.print("How many integers u wanna sort? :");
@@ -36,6 +35,7 @@ public class Main {
             }
             if (args[1].equals("heap")) {
                 System.out.println("Using HeapSort");
+                new HeapSort(arrayToSort);
             }
             if (!args[1].equals("select") && !args[1].equals("heap") && !args[1].equals("insert") && !args[1].equals("quick")) {
                 System.out.print("\033[31mERROR  \033[0m");
