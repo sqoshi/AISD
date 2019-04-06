@@ -1,3 +1,5 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -107,25 +109,51 @@ public class Main {
         for (int j = 0; j < args.length; j++) {
             if (args[j].equals("--stat")) {
                 try {
-                    int k = Integer.parseInt(args[j + 1]);
+                    int k = Integer.parseInt(args[j + 2]);
                     int n = 100;
-                    while (n < 10001) {
-                        int[][] a = new int[100][n];
-                        int[] b = new int[n];
+                    try {
+                        FileWriter fs = new FileWriter(args[j + 1]);
+                        BufferedWriter out = new BufferedWriter(fs);
+                        String formatStr = "%-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n";
 
-                        for (int i = 0; i < 100; i++) {
-                            for (int m = 0; m < n; m++) {
-                                Random r = new Random();
-                                a[i][m] = r.nextInt();
-                              //  System.out.println(a[i][m]);
-                                b[m] = a[i][m];
+                        out.write(String.format("#E","IC","SC","QC","HC","IS","SS","QS","HS"));
+                        while (k > 0) {
+                            while (n < 10001) {
+                                int[][] a = new int[100][n];
+                                int[] b = new int[n];
+
+                                for (int i = 0; i < 100; i++) {
+                                    for (int m = 0; m < n; m++) {
+                                        Random r = new Random();
+                                        a[i][m] = r.nextInt();
+                                        //  System.out.println(a[i][m]);
+                                        b[m] = a[i][m];
+                                    }
+                                }
+                                new InsertionSort(b);
+                                new SelectSort(b);
+                                new QuickSort(b, 0, b.length - 1);
+                                new HeapSort(b);
+
+                                out.write(String.format(formatStr, n,
+
+                                        InsertionSort.comparisionsCounter
+                                        , SelectSort.comparisionsCounter
+                                        , QuickSort.comparisionsCounter,
+                                        HeapSort.comparisionsCounter,
+
+                                        InsertionSort.swapsCounter,
+                                        SelectSort.swapsCounter,
+                                        QuickSort.swapsCounter,
+                                        HeapSort.swapsCounter));
+                                n += 100;
+
                             }
+                            k--;
+                            out.close();
                         }
-                        new InsertionSort(b);
-                        new SelectSort(b);
-                        new QuickSort(b,0,b.length-1);
-                        new HeapSort(b);
-                        n += 100;
+                    } catch (Exception e) {
+                        System.err.println("Error" + e.getMessage());
                     }
                 } catch (NumberFormatException ex) {
                     System.out.println("k need to be an integer");

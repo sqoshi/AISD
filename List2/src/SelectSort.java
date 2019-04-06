@@ -2,6 +2,8 @@ public class SelectSort {
    static int comparisionsCounter = 0;
    static int swapsCounter = 0;
 
+
+
     SelectSort(int[] arrayToSort) {
         for (int i = 0; i < arrayToSort.length; i++) {
             int min = arrayToSort[i];
@@ -19,8 +21,6 @@ public class SelectSort {
             swapsCounter++;
 
         }
-
-
 
     }
 }
