@@ -1,7 +1,7 @@
 public class InsertionSort {
     static int comparisionsCounter = 0;
     static int swapsCounter = 0;
-
+  static  long startTime = System.nanoTime();
     public InsertionSort(int[] arr) {
         for (int i = 1; i < arr.length; ++i) {
             int key = arr[i];
@@ -18,6 +18,8 @@ public class InsertionSort {
 
 
     }
+  static  long stopTime = System.nanoTime();
+  static  long elapsedTime = (stopTime - startTime);
 
   static void MyImplementationOfInsertionSort(int a[])
   {

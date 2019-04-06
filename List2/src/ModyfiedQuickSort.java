@@ -38,6 +38,8 @@ public class ModyfiedQuickSort {
         return border + 1;
     }
 
+    static double startTime = System.nanoTime();
+
     public ModyfiedQuickSort(int a[], int left, int right) {
         if (left < right) {
             int p = partition(a, left, right);
@@ -47,5 +49,9 @@ public class ModyfiedQuickSort {
         }
 
     }
+
+    static double stopTime = System.nanoTime();
+    static double elapsedTime = (stopTime - startTime);
+
 
 }

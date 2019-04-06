@@ -35,57 +35,44 @@ public class Main {
 
                     if (args[j + 1].equals("select")) {
                         System.out.println("Using SelectSort");
-                        double startTime = System.nanoTime();
+
                         new SelectSort(arrayToSort);
                         System.out.println("\u001b[34mComparisions:\033[0m " + SelectSort.comparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + SelectSort.swapsCounter);
-                        double stopTime = System.nanoTime();
-                        double elapsedTime = (stopTime - startTime);
-                        System.out.println("\u001b[1mSelection Sort Execution time: " + elapsedTime + "ns\033[0m");
+
+                        System.out.println("\u001b[1mSelection Sort Execution time: " + SelectSort.elapsedTime + "ns\033[0m");
                     }
                     if (args[j + 1].equals("quick")) {
                         System.out.println("Using QuickSort");
-                        double startTime = System.nanoTime();
                         new QuickSort(arrayToSort, 0, arrayToSort.length - 1);
                         System.out.println("\u001b[34mComparisions:\033[0m " + QuickSort.comparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + QuickSort.swapsCounter);
-                        double stopTime = System.nanoTime();
-                        double elapsedTime = (stopTime - startTime);
 
-                        System.out.println("\u001b[1mQuick Sort Execution time: " + elapsedTime + "ns\033[0m");
+                        System.out.println("\u001b[1mQuick Sort Execution time: " + QuickSort.elapsedTime + "ns\033[0m");
 
                     }
                     if (args[j + 1].equals("mquick")) {
                         System.out.println("Using ModyfiedQuickSort");
-                        long startTime = System.nanoTime();
                         new ModyfiedQuickSort(arrayToSort, 0, arrayToSort.length - 1);
                         System.out.println("\u001b[34mComparisions:\033[0m " + ModyfiedQuickSort.comparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + ModyfiedQuickSort.swapsCounter);
-                        long stopTime = System.nanoTime();
-                        long elapsedTime = (stopTime - startTime);
-                        System.out.println("\u001b[1mModyfied Quick Sort Execution time: " + elapsedTime + "ns\033[0m");
+                        System.out.println("\u001b[1mModyfied Quick Sort Execution time: " + ModyfiedQuickSort.elapsedTime + "ns\033[0m");
                     }
 
                     if (args[j + 1].equals("insert")) {
                         System.out.println("Using InsertionSort");
-                        double startTime = System.nanoTime();
                         new InsertionSort(arrayToSort);
                         System.out.println("\u001b[34mComparisions:\033[0m " + InsertionSort.comparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + InsertionSort.swapsCounter);
-                        double stopTime = System.nanoTime();
-                        double elapsedTime = (stopTime - startTime);
-                        System.out.println("\u001b[1mInsertion Sort Execution time: " + elapsedTime + "ns\033[0m");
+                        System.out.println("\u001b[1mInsertion Sort Execution time: " + InsertionSort.elapsedTime + "ns\033[0m");
 
                     }
                     if (args[j + 1].equals("heap")) {
-                        double startTime = System.nanoTime();
                         System.out.println("Using HeapSort");
                         new HeapSort(arrayToSort);
                         System.out.println("\u001b[34mComparisions:\033[0m " + HeapSort.comparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + HeapSort.swapsCounter);
-                        double stopTime = System.nanoTime();
-                        double elapsedTime = (stopTime - startTime);
-                        System.out.println("\u001b[1mHeap Sort Execution time: " + elapsedTime + "ns\033[0m");
+                        System.out.println("\u001b[1mHeap Sort Execution time: " + HeapSort.elapsedTime + "ns\033[0m");
                     }
                     if (!args[j + 1].equals("select") && !args[j + 1].equals("heap") && !args[j + 1].equals("insert")
                             && !args[j + 1].equals("quick")) {
@@ -114,9 +101,10 @@ public class Main {
                     try {
                         FileWriter fs = new FileWriter(args[j + 1]);
                         BufferedWriter out = new BufferedWriter(fs);
-                        String formatStr = "%-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n";
+                        String formatStr = "%-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n";
 
-                        out.write(String.format("#E","IC","SC","QC","HC","IS","SS","QS","HS"));
+                        String s = "";
+                        out.write(String.format(formatStr, "E", "IC", "SC", "QC", "HC", "IS", "SS", "QS", "HS", "IT"/*, "IT", "ST", "QT", "HT"*/));
                         while (k > 0) {
                             while (n < 10001) {
                                 int[][] a = new int[100][n];
@@ -126,7 +114,6 @@ public class Main {
                                     for (int m = 0; m < n; m++) {
                                         Random r = new Random();
                                         a[i][m] = r.nextInt();
-                                        //  System.out.println(a[i][m]);
                                         b[m] = a[i][m];
                                     }
                                 }
@@ -134,7 +121,6 @@ public class Main {
                                 new SelectSort(b);
                                 new QuickSort(b, 0, b.length - 1);
                                 new HeapSort(b);
-
                                 out.write(String.format(formatStr, n,
 
                                         InsertionSort.comparisionsCounter
@@ -145,7 +131,15 @@ public class Main {
                                         InsertionSort.swapsCounter,
                                         SelectSort.swapsCounter,
                                         QuickSort.swapsCounter,
-                                        HeapSort.swapsCounter));
+                                        HeapSort.swapsCounter,
+                                        Long.toString(InsertionSort.elapsedTime)
+
+                                /*      , Long.valueOf((int) InsertionSort.elapsedTime),
+                                        Long.valueOf(SelectSort.elapsedTime),
+                                        Long.valueOf(QuickSort.elapsedTime),
+                                        Long.valueOf(HeapSort.elapsedTime)*/
+
+                                ));
                                 n += 100;
 
                             }

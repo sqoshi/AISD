@@ -1,8 +1,9 @@
 public class SelectSort {
-   static int comparisionsCounter = 0;
-   static int swapsCounter = 0;
+    static int comparisionsCounter = 0;
+    static int swapsCounter = 0;
 
 
+    static long startTime = System.nanoTime();
 
     SelectSort(int[] arrayToSort) {
         for (int i = 0; i < arrayToSort.length; i++) {
@@ -23,4 +24,6 @@ public class SelectSort {
         }
 
     }
+    static long stopTime = System.nanoTime();
+    static long elapsedTime = (stopTime - startTime);
 }

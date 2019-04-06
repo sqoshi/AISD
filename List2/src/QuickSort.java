@@ -22,7 +22,7 @@ public class QuickSort {
 
         return border + 1;
     }
-
+  static  long startTime = System.nanoTime();
     public QuickSort(int a[], int left, int right) {
         if (left < right) {
             int p = partition(a, left, right);
@@ -32,6 +32,7 @@ public class QuickSort {
         }
 
     }
-
+   static long stopTime = System.nanoTime();
+  static  long elapsedTime = (stopTime - startTime);
 
 }

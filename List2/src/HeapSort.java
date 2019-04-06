@@ -1,6 +1,7 @@
 public class HeapSort {
     static int comparisionsCounter = 0;
     static int swapsCounter = 0;
+    static long startTime = System.nanoTime();
 
     public HeapSort(int a[]) {
         int n = a.length;
@@ -19,6 +20,9 @@ public class HeapSort {
 
 
     }
+
+    static long stopTime = System.nanoTime();
+    static long elapsedTime = (stopTime - startTime);
 
     void heapify(int a[], int n, int i) {
         int largest = i;
