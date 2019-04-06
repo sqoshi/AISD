@@ -1,9 +1,8 @@
 public class InsertionSort {
-    private int comparisionsCounter = 0;
-    private int swapsCounter = 0;
+    static int comparisionsCounter = 0;
+    static int swapsCounter = 0;
 
     public InsertionSort(int[] arr) {
-        double startTime = System.nanoTime();
         for (int i = 1; i < arr.length; ++i) {
             int key = arr[i];
             int j = i - 1;
@@ -17,11 +16,7 @@ public class InsertionSort {
         }
 
 
-        System.out.println("\u001b[34mComparisions:\033[0m " + comparisionsCounter);
-        System.out.println("\u001b[34mSwaps:\033[0m " + swapsCounter);
-        double stopTime = System.nanoTime();
-        double elapsedTime = (stopTime - startTime)/(10^9)/(10^6);
-        System.out.println("\u001b[1mInsertion Sort Execution time: " + elapsedTime+"s\033[0m");
+
     }
 
   static void MyImplementationOfInsertionSort(int a[])

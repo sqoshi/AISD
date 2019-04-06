@@ -1,6 +1,6 @@
 public class QuickSort {
-    public static int comparisionsCounter = 0;
-    public static int swapsCounter = 0;
+    static int comparisionsCounter = 0;
+    static int swapsCounter = 0;
 
     public int partition(int a[], int left, int right) {
         int pivot = a[right];

@@ -1,9 +1,8 @@
 public class HeapSort {
-    private int comparisionsCounter = 0;
-    private int swapsCounter = 0;
+    static int comparisionsCounter = 0;
+    static int swapsCounter = 0;
 
     public HeapSort(int a[]) {
-        double startTime = System.nanoTime();
         int n = a.length;
 
         for (int i = n / 2 - 1; i >= 0; i--)
@@ -17,11 +16,7 @@ public class HeapSort {
 
             heapify(a, i, 0);
         }
-        System.out.println("\u001b[34mComparisions:\033[0m " + comparisionsCounter);
-        System.out.println("\u001b[34mSwaps:\033[0m " + swapsCounter);
-        double stopTime = System.nanoTime();
-        double elapsedTime = (stopTime - startTime) / (10 ^ 9);
-        System.out.println("\u001b[1mHeap Sort Execution time: " + elapsedTime + "s\033[0m");
+
 
     }
 
