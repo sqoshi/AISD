@@ -97,19 +97,21 @@ public class Main {
             if (args[j].equals("--stat")) {
                 try {
                     int k = Integer.parseInt(args[j + 2]);
-                    int n = 100;
                     try {
                         FileWriter fs = new FileWriter(args[j + 1]);
                         BufferedWriter out = new BufferedWriter(fs);
-                        String formatStr = "%-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n";
+                        String formatStr = "%-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s%n";
 
-                        String s = "";
-                        out.write(String.format(formatStr, "E", "IC", "SC", "QC", "HC", "IS", "SS", "QS", "HS", "IT"/*, "IT", "ST", "QT", "HT"*/));
+
+                        out.write(String.format(formatStr,
+                                "N:", "IC", "SC", "QC", "HC", "IS", "SS", "QS", "HS", "IT", "ST", "QT", "HT"));
                         while (k > 0) {
+                            int n = 100;
+
                             while (n < 10001) {
+
                                 int[][] a = new int[100][n];
                                 int[] b = new int[n];
-
                                 for (int i = 0; i < 100; i++) {
                                     for (int m = 0; m < n; m++) {
                                         Random r = new Random();
@@ -117,12 +119,34 @@ public class Main {
                                         b[m] = a[i][m];
                                     }
                                 }
-                                new InsertionSort(b);
-                                new SelectSort(b);
-                                new QuickSort(b, 0, b.length - 1);
-                                new HeapSort(b);
-                                out.write(String.format(formatStr, n,
 
+                                InsertionSort.comparisionsCounter = 0;
+                                InsertionSort.swapsCounter = 0;
+                                SelectSort.comparisionsCounter = 0;
+                                SelectSort.swapsCounter = 0;
+                                QuickSort.comparisionsCounter = 0;
+                                QuickSort.swapsCounter = 0;
+                                HeapSort.comparisionsCounter = 0;
+                                HeapSort.swapsCounter = 0;
+
+                                Long ip = System.nanoTime();
+                                new InsertionSort(b);
+                                Long ik = System.nanoTime();
+
+                                Long sp = System.nanoTime();
+                                new SelectSort(b);
+                                Long sk = System.nanoTime();
+
+                                Long qp = System.nanoTime();
+                                new QuickSort(b, 0, b.length - 1);
+                                Long qk = System.nanoTime();
+
+                                Long hp = System.nanoTime();
+                                new HeapSort(b);
+                                Long hk = System.nanoTime();
+
+
+                                out.write(String.format(formatStr, n,
                                         InsertionSort.comparisionsCounter
                                         , SelectSort.comparisionsCounter
                                         , QuickSort.comparisionsCounter,
@@ -132,20 +156,20 @@ public class Main {
                                         SelectSort.swapsCounter,
                                         QuickSort.swapsCounter,
                                         HeapSort.swapsCounter,
-                                        Long.toString(InsertionSort.elapsedTime)
 
-                                /*      , Long.valueOf((int) InsertionSort.elapsedTime),
-                                        Long.valueOf(SelectSort.elapsedTime),
-                                        Long.valueOf(QuickSort.elapsedTime),
-                                        Long.valueOf(HeapSort.elapsedTime)*/
-
+                                        Long.toString(ik - ip)
+                                        , Long.toString(sk - sp)
+                                        , Long.toString(qk - qp),
+                                        Long.toString(hk - hp)
                                 ));
+                                ip=0L;
+                                ik=0L;
                                 n += 100;
-
                             }
                             k--;
-                            out.close();
                         }
+                        out.close();
+                        System.out.println("Data saved in: \u001b[34m" + args[j + 1] + "\033[0m");
                     } catch (Exception e) {
                         System.err.println("Error" + e.getMessage());
                     }

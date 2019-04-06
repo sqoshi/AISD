@@ -22,7 +22,7 @@ public class SelectSort {
             swapsCounter++;
 
         }
-
+    comparisionsCounter--;
     }
     static long stopTime = System.nanoTime();
     static long elapsedTime = (stopTime - startTime);
