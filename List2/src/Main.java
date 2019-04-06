@@ -1,6 +1,5 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.text.ParseException;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -35,44 +34,58 @@ public class Main {
 
                     if (args[j + 1].equals("select")) {
                         System.out.println("Using SelectSort");
+                        long startTime = System.nanoTime();
+                        Alghoritms.SelectSort(arrayToSort);
+                        long stopTime = System.nanoTime();
+                        long elapsedTime=stopTime-startTime;
+                        System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.ScomparisionsCounter);
+                        System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.SswapsCounter);
 
-                        new SelectSort(arrayToSort);
-                        System.out.println("\u001b[34mComparisions:\033[0m " + SelectSort.comparisionsCounter);
-                        System.out.println("\u001b[34mSwaps:\033[0m " + SelectSort.swapsCounter);
-
-                        System.out.println("\u001b[1mSelection Sort Execution time: " + SelectSort.elapsedTime + "ns\033[0m");
+                        System.out.println("\u001b[1mSelection Sort Execution time: " + elapsedTime + "ns\033[0m");
                     }
                     if (args[j + 1].equals("quick")) {
                         System.out.println("Using QuickSort");
-                        new QuickSort(arrayToSort, 0, arrayToSort.length - 1);
-                        System.out.println("\u001b[34mComparisions:\033[0m " + QuickSort.comparisionsCounter);
-                        System.out.println("\u001b[34mSwaps:\033[0m " + QuickSort.swapsCounter);
+                        long startTime = System.nanoTime();
+                         Alghoritms.QuickSort(arrayToSort, 0, arrayToSort.length - 1);
+                        long stopTime = System.nanoTime();
+                        long elapsedTime=stopTime-startTime;
+                        System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.QcomparisionsCounter);
+                        System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.QswapsCounter);
 
-                        System.out.println("\u001b[1mQuick Sort Execution time: " + QuickSort.elapsedTime + "ns\033[0m");
+                        System.out.println("\u001b[1mQuick Sort Execution time: " + "ns\033[0m");
 
                     }
                     if (args[j + 1].equals("mquick")) {
                         System.out.println("Using ModyfiedQuickSort");
-                        new ModyfiedQuickSort(arrayToSort, 0, arrayToSort.length - 1);
-                        System.out.println("\u001b[34mComparisions:\033[0m " + ModyfiedQuickSort.comparisionsCounter);
-                        System.out.println("\u001b[34mSwaps:\033[0m " + ModyfiedQuickSort.swapsCounter);
-                        System.out.println("\u001b[1mModyfied Quick Sort Execution time: " + ModyfiedQuickSort.elapsedTime + "ns\033[0m");
+                        long startTime = System.nanoTime();
+                        Alghoritms.ModyfiedQuickSort(arrayToSort, 0, arrayToSort.length - 1);
+                        long stopTime = System.nanoTime();
+                        long elapsedTime=stopTime-startTime;
+                        System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.MQcomparisionsCounter);
+                        System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.MQswapsCounter);
+                        System.out.println("\u001b[1mModyfied Quick Sort Execution time: " + elapsedTime + "ns\033[0m");
                     }
 
                     if (args[j + 1].equals("insert")) {
                         System.out.println("Using InsertionSort");
-                        new InsertionSort(arrayToSort);
-                        System.out.println("\u001b[34mComparisions:\033[0m " + InsertionSort.comparisionsCounter);
-                        System.out.println("\u001b[34mSwaps:\033[0m " + InsertionSort.swapsCounter);
-                        System.out.println("\u001b[1mInsertion Sort Execution time: " + InsertionSort.elapsedTime + "ns\033[0m");
+                        long startTime = System.nanoTime();
+                        Alghoritms.InsertionSort(arrayToSort);
+                        long stopTime = System.nanoTime();
+                        long elapsedTime=stopTime-startTime;
+                        System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.IcomparisionsCounter);
+                        System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.IswapsCounter);
+                        System.out.println("\u001b[1mInsertion Sort Execution time: " + elapsedTime + "ns\033[0m");
 
                     }
                     if (args[j + 1].equals("heap")) {
                         System.out.println("Using HeapSort");
-                        new HeapSort(arrayToSort);
-                        System.out.println("\u001b[34mComparisions:\033[0m " + HeapSort.comparisionsCounter);
-                        System.out.println("\u001b[34mSwaps:\033[0m " + HeapSort.swapsCounter);
-                        System.out.println("\u001b[1mHeap Sort Execution time: " + HeapSort.elapsedTime + "ns\033[0m");
+                        long startTime = System.nanoTime();
+                        Alghoritms.HeapSort(arrayToSort);
+                        long stopTime = System.nanoTime();
+                        long elapsedTime=stopTime-startTime;
+                        System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.HcomparisionsCounter);
+                        System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.HswapsCounter);
+                        System.out.println("\u001b[1mHeap Sort Execution time: " + elapsedTime + "ns\033[0m");
                     }
                     if (!args[j + 1].equals("select") && !args[j + 1].equals("heap") && !args[j + 1].equals("insert")
                             && !args[j + 1].equals("quick")) {
@@ -120,50 +133,48 @@ public class Main {
                                     }
                                 }
 
-                                InsertionSort.comparisionsCounter = 0;
-                                InsertionSort.swapsCounter = 0;
-                                SelectSort.comparisionsCounter = 0;
-                                SelectSort.swapsCounter = 0;
-                                QuickSort.comparisionsCounter = 0;
-                                QuickSort.swapsCounter = 0;
-                                HeapSort.comparisionsCounter = 0;
-                                HeapSort.swapsCounter = 0;
+                            //   InsertionSort.comparisionsCounter = 0;
+                            //   InsertionSort.swapsCounter = 0;
+                            //   SelectSort.comparisionsCounter = 0;
+                            //   SelectSort.swapsCounter = 0;
+                            //   QuickSort.comparisionsCounter = 0;
+                            //   QuickSort.swapsCounter = 0;
+                            //   HeapSort.comparisionsCounter = 0;
+                            //   HeapSort.swapsCounter = 0;
 
                                 Long ip = System.nanoTime();
-                                new InsertionSort(b);
+                                Alghoritms.InsertionSort(b);
                                 Long ik = System.nanoTime();
 
                                 Long sp = System.nanoTime();
-                                new SelectSort(b);
+                                Alghoritms.SelectSort(b);
                                 Long sk = System.nanoTime();
 
                                 Long qp = System.nanoTime();
-                                new QuickSort(b, 0, b.length - 1);
+                                Alghoritms.QuickSort(b, 0, b.length - 1);
                                 Long qk = System.nanoTime();
 
                                 Long hp = System.nanoTime();
-                                new HeapSort(b);
+                                Alghoritms.HeapSort(b);
                                 Long hk = System.nanoTime();
 
 
                                 out.write(String.format(formatStr, n,
-                                        InsertionSort.comparisionsCounter
-                                        , SelectSort.comparisionsCounter
-                                        , QuickSort.comparisionsCounter,
-                                        HeapSort.comparisionsCounter,
+                                        Alghoritms.IcomparisionsCounter
+                                        , Alghoritms.ScomparisionsCounter
+                                        , Alghoritms.QcomparisionsCounter,
+                                        Alghoritms.HcomparisionsCounter,
 
-                                        InsertionSort.swapsCounter,
-                                        SelectSort.swapsCounter,
-                                        QuickSort.swapsCounter,
-                                        HeapSort.swapsCounter,
+                                        Alghoritms.IswapsCounter,
+                                        Alghoritms.SswapsCounter,
+                                        Alghoritms.QswapsCounter,
+                                        Alghoritms.HswapsCounter,
 
-                                        Long.toString(ik - ip)
-                                        , Long.toString(sk - sp)
-                                        , Long.toString(qk - qp),
-                                        Long.toString(hk - hp)
+                                        ik-ip    //exetimes
+                                        , sk-sp    //exetimes
+                                        , qk - qp,    //exetimes
+                                        hk - hp    //exetimes
                                 ));
-                                ip=0L;
-                                ik=0L;
                                 n += 100;
                             }
                             k--;

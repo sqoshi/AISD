@@ -1,8 +1,7 @@
 public class QuickSort {
     static int comparisionsCounter = 0;
-    static int swapsCounter = 0;
 
-    public int partition(int a[], int left, int right) {
+    /*public int partition(int a[], int left, int right) {
         int pivot = a[right];
         int border = left - 1;
         for (int i = left; i < right; i++) {
@@ -22,7 +21,6 @@ public class QuickSort {
 
         return border + 1;
     }
-  static  long startTime = System.nanoTime();
     public QuickSort(int a[], int left, int right) {
         if (left < right) {
             int p = partition(a, left, right);
@@ -31,8 +29,5 @@ public class QuickSort {
             new QuickSort(a, p + 1, right);
         }
 
-    }
-   static long stopTime = System.nanoTime();
-  static  long elapsedTime = (stopTime - startTime);
-
+    }*/
 }

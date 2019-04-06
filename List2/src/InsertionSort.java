@@ -1,8 +1,5 @@
 public class InsertionSort {
-    static int comparisionsCounter = 0;
-    static int swapsCounter = 0;
-  static  long startTime = System.nanoTime();
-    public InsertionSort(int[] arr) {
+   /* public InsertionSort(int[] arr) {
         for (int i = 1; i < arr.length; ++i) {
             int key = arr[i];
             int j = i - 1;
@@ -14,8 +11,6 @@ public class InsertionSort {
             swapsCounter++;
             arr[j + 1] = key;
         }
-
-
 
     }
   static  long stopTime = System.nanoTime();
@@ -32,5 +27,5 @@ public class InsertionSort {
               }
           }
       }
-  }
+  }*/
 }

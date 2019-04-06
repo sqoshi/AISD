@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class ModyfiedQuickSort {
-
+/*
     private int med(int a, int b, int c) {
         int[] arr = new int[3];
         arr[0] = a;
@@ -44,14 +44,14 @@ public class ModyfiedQuickSort {
         if (left < right) {
             int p = partition(a, left, right);
             if (right - left <= 16) new InsertionSort(a);
-            new QuickSort(a, left, p - 1);
-            new QuickSort(a, p + 1, right);
+            Alghoritms.QuickSort(a, left, p - 1);
+            Alghoritms.QuickSort(a, p + 1, right);
         }
 
     }
 
     static double stopTime = System.nanoTime();
-    static double elapsedTime = (stopTime - startTime);
+    static double elapsedTime = (stopTime - startTime);*/
 
 
 }
