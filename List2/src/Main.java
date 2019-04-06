@@ -133,14 +133,14 @@ public class Main {
                                     }
                                 }
 
-                            //   InsertionSort.comparisionsCounter = 0;
-                            //   InsertionSort.swapsCounter = 0;
-                            //   SelectSort.comparisionsCounter = 0;
-                            //   SelectSort.swapsCounter = 0;
-                            //   QuickSort.comparisionsCounter = 0;
-                            //   QuickSort.swapsCounter = 0;
-                            //   HeapSort.comparisionsCounter = 0;
-                            //   HeapSort.swapsCounter = 0;
+                        Alghoritms.QcomparisionsCounter=0;
+                        Alghoritms.IcomparisionsCounter=0;
+                        Alghoritms.ScomparisionsCounter=0;
+                        Alghoritms.HcomparisionsCounter=0;
+                        Alghoritms.QswapsCounter=0;
+                        Alghoritms.IswapsCounter=0;
+                        Alghoritms.SswapsCounter=0;
+                        Alghoritms.HswapsCounter=0;
 
                                 Long ip = System.nanoTime();
                                 Alghoritms.InsertionSort(b);
