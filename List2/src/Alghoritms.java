@@ -1,16 +1,16 @@
 import java.util.Arrays;
 
-public class Alghoritms {
-    public static int QcomparisionsCounter = 0;
-    public static int HcomparisionsCounter = 0;
-    public static int ScomparisionsCounter = 0;
-    public static int IcomparisionsCounter = 0;
-    public static int MQcomparisionsCounter = 0;
-    public static int QswapsCounter = 0;
-    public static int HswapsCounter = 0;
-    public static int SswapsCounter = 0;
-    public static int IswapsCounter = 0;
-    public static int MQswapsCounter = 0;
+class Alghoritms {
+    static int QcomparisionsCounter = 0;
+    static int HcomparisionsCounter = 0;
+    static int ScomparisionsCounter = 0;
+    static int IcomparisionsCounter = 0;
+    static int MQcomparisionsCounter = 0;
+    static int QswapsCounter = 0;
+    static int HswapsCounter = 0;
+    static int SswapsCounter = 0;
+    static int IswapsCounter = 0;
+    static int MQswapsCounter = 0;
 
 
     static void printDESC(int[] array) {
@@ -52,7 +52,7 @@ public class Alghoritms {
         return border + 1;
     }
 
-    public static void QuickSort(int a[], int left, int right) {
+    static void QuickSort(int a[], int left, int right) {
         if (left < right) {
             int p = partition(a, left, right);
 
@@ -62,7 +62,7 @@ public class Alghoritms {
 
     }
 
-    public static void HeapSort(int a[]) {
+    static void HeapSort(int a[]) {
         int n = a.length;
 
         for (int i = n / 2 - 1; i >= 0; i--)
@@ -81,7 +81,7 @@ public class Alghoritms {
     }
 
 
-    public static void heapify(int a[], int n, int i) {
+    static void heapify(int a[], int n, int i) {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * (i + 1);
@@ -105,7 +105,7 @@ public class Alghoritms {
         }
     }
 
-    public static void SelectSort(int[] arrayToSort) {
+    static void SelectSort(int[] arrayToSort) {
         for (int i = 0; i < arrayToSort.length; i++) {
             int min = arrayToSort[i];
             int minIndex = i;
@@ -122,18 +122,19 @@ public class Alghoritms {
             SswapsCounter++;
 
         }
+        SswapsCounter--;
     }
 
-    public static void InsertionSort(int[] arr) {
+    static void InsertionSort(int[] arr) {
         for (int i = 1; i < arr.length; ++i) {
             int key = arr[i];
             int j = i - 1;
             while (j >= 0 && arr[j] > key) {
                 IcomparisionsCounter++;
                 arr[j + 1] = arr[j];
+                IswapsCounter++;
                 j = j - 1;
             }
-            IswapsCounter++;
             arr[j + 1] = key;
         }
 
@@ -156,7 +157,7 @@ public class Alghoritms {
         arr[0] = a;
         arr[1] = b;
         arr[2] = c;
-        MQcomparisionsCounter = MQcomparisionsCounter + 3;
+        MQcomparisionsCounter += 2;
         Arrays.sort(arr);
         return arr[1];
     }
@@ -185,12 +186,14 @@ public class Alghoritms {
     }
 
 
-    public static void ModyfiedQuickSort(int a[], int left, int right) {
+    static void ModyfiedQuickSort(int a[], int left, int right) {
         if (left < right) {
             int p = partition1(a, left, right);
             if (right - left <= 16) InsertionSort(a);
-            Alghoritms.QuickSort(a, left, p - 1);
-            Alghoritms.QuickSort(a, p + 1, right);
+            else {
+                Alghoritms.ModyfiedQuickSort(a, left, p - 1);
+                Alghoritms.ModyfiedQuickSort(a, p + 1, right);
+            }
         }
 
     }

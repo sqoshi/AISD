@@ -1,8 +1,14 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.lang.reflect.Array;
+import java.security.AlgorithmConstraints;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+
+import static java.lang.System.nanoTime;
 
 public class Main {
 
@@ -10,7 +16,7 @@ public class Main {
 
         System.out.println("\u001B[33mWelcome!\033[0m");
         for (int j = 0; j < args.length; j++) {
-            if (args[j] == ("--stat")) {
+            if (!args[j].equals("--stat")) {
 
                 if (args[j].equals("--type")) {
                     System.out.println("Sorting program v1.8");
@@ -34,10 +40,10 @@ public class Main {
 
                     if (args[j + 1].equals("select")) {
                         System.out.println("Using SelectSort");
-                        long startTime = System.nanoTime();
+                        long startTime = nanoTime();
                         Alghoritms.SelectSort(arrayToSort);
-                        long stopTime = System.nanoTime();
-                        long elapsedTime=stopTime-startTime;
+                        long stopTime = nanoTime();
+                        long elapsedTime = stopTime - startTime;
                         System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.ScomparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.SswapsCounter);
 
@@ -45,22 +51,22 @@ public class Main {
                     }
                     if (args[j + 1].equals("quick")) {
                         System.out.println("Using QuickSort");
-                        long startTime = System.nanoTime();
-                         Alghoritms.QuickSort(arrayToSort, 0, arrayToSort.length - 1);
-                        long stopTime = System.nanoTime();
-                        long elapsedTime=stopTime-startTime;
+                        long startTime = nanoTime();
+                        Alghoritms.QuickSort(arrayToSort, 0, arrayToSort.length - 1);
+                        long stopTime = nanoTime();
+                        long elapsedTime = stopTime - startTime;
                         System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.QcomparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.QswapsCounter);
 
-                        System.out.println("\u001b[1mQuick Sort Execution time: " + "ns\033[0m");
+                        System.out.println("\u001b[1mQuick Sort Execution time: " + elapsedTime + "ns\033[0m");
 
                     }
                     if (args[j + 1].equals("mquick")) {
                         System.out.println("Using ModyfiedQuickSort");
-                        long startTime = System.nanoTime();
+                        long startTime = nanoTime();
                         Alghoritms.ModyfiedQuickSort(arrayToSort, 0, arrayToSort.length - 1);
-                        long stopTime = System.nanoTime();
-                        long elapsedTime=stopTime-startTime;
+                        long stopTime = nanoTime();
+                        long elapsedTime = stopTime - startTime;
                         System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.MQcomparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.MQswapsCounter);
                         System.out.println("\u001b[1mModyfied Quick Sort Execution time: " + elapsedTime + "ns\033[0m");
@@ -68,10 +74,10 @@ public class Main {
 
                     if (args[j + 1].equals("insert")) {
                         System.out.println("Using InsertionSort");
-                        long startTime = System.nanoTime();
+                        long startTime = nanoTime();
                         Alghoritms.InsertionSort(arrayToSort);
-                        long stopTime = System.nanoTime();
-                        long elapsedTime=stopTime-startTime;
+                        long stopTime = nanoTime();
+                        long elapsedTime = stopTime - startTime;
                         System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.IcomparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.IswapsCounter);
                         System.out.println("\u001b[1mInsertion Sort Execution time: " + elapsedTime + "ns\033[0m");
@@ -79,10 +85,10 @@ public class Main {
                     }
                     if (args[j + 1].equals("heap")) {
                         System.out.println("Using HeapSort");
-                        long startTime = System.nanoTime();
+                        long startTime = nanoTime();
                         Alghoritms.HeapSort(arrayToSort);
-                        long stopTime = System.nanoTime();
-                        long elapsedTime=stopTime-startTime;
+                        long stopTime = nanoTime();
+                        long elapsedTime = stopTime - startTime;
                         System.out.println("\u001b[34mComparisions:\033[0m " + Alghoritms.HcomparisionsCounter);
                         System.out.println("\u001b[34mSwaps:\033[0m " + Alghoritms.HswapsCounter);
                         System.out.println("\u001b[1mHeap Sort Execution time: " + elapsedTime + "ns\033[0m");
@@ -95,11 +101,11 @@ public class Main {
                                         + args[j + 1]);
                     }
 
-                    for (int i = 0; i < args.length; i++) {
-                        if (args[i].equals("--desc")) {
+                    for (String arg : args) {
+                        if (arg.equals("--desc")) {
                             Alghoritms.printDESC(arrayToSort);
                         }
-                        if (args[i].equals("--asc")) {
+                        if (arg.equals("--asc")) {
                             Alghoritms.printASC(arrayToSort);
                         }
                     }
@@ -118,46 +124,57 @@ public class Main {
 
                         out.write(String.format(formatStr,
                                 "N:", "IC", "SC", "QC", "HC", "IS", "SS", "QS", "HS", "IT", "ST", "QT", "HT"));
-                        while (k > 0) {
-                            int n = 100;
 
-                            while (n < 10001) {
+                        int n = 100;
+
+                        while (k > 0) {
+                            while (n<10001) {
 
                                 int[][] a = new int[100][n];
                                 int[] b = new int[n];
+                                int[] c = new int[n];
+                                int[] d = new int[n];
+                                int[] e = new int[n];
                                 for (int i = 0; i < 100; i++) {
                                     for (int m = 0; m < n; m++) {
                                         Random r = new Random();
                                         a[i][m] = r.nextInt();
                                         b[m] = a[i][m];
+                                        c[m] = a[i][m];
+                                        d[m] = a[i][m];
+                                        e[m] = a[i][m];
                                     }
                                 }
 
-                        Alghoritms.QcomparisionsCounter=0;
-                        Alghoritms.IcomparisionsCounter=0;
-                        Alghoritms.ScomparisionsCounter=0;
-                        Alghoritms.HcomparisionsCounter=0;
-                        Alghoritms.QswapsCounter=0;
-                        Alghoritms.IswapsCounter=0;
-                        Alghoritms.SswapsCounter=0;
-                        Alghoritms.HswapsCounter=0;
+                                Alghoritms.QcomparisionsCounter = 0;
+                                Alghoritms.IcomparisionsCounter = 0;
+                                Alghoritms.ScomparisionsCounter = 0;
+                                Alghoritms.HcomparisionsCounter = 0;
+                                Alghoritms.QswapsCounter = 0;
+                                Alghoritms.IswapsCounter = 0;
+                                Alghoritms.SswapsCounter = 0;
+                                Alghoritms.HswapsCounter = 0;
 
-                                Long ip = System.nanoTime();
+
+                                Instant start = Instant.now();
                                 Alghoritms.InsertionSort(b);
-                                Long ik = System.nanoTime();
+                                Instant stop = Instant.now();
+                                long timeElapsed = Duration.between(start, stop).toMillis();
 
-                                Long sp = System.nanoTime();
-                                Alghoritms.SelectSort(b);
-                                Long sk = System.nanoTime();
+                                Instant Qstart = Instant.now();
+                                Alghoritms.QuickSort(c, 0, b.length - 1);
+                                Instant Qstop = Instant.now();
+                                long Qdur = Duration.between(Qstart, Qstop).toMillis();
 
-                                Long qp = System.nanoTime();
-                                Alghoritms.QuickSort(b, 0, b.length - 1);
-                                Long qk = System.nanoTime();
+                                Instant Sstart = Instant.now();
+                                Alghoritms.SelectSort(d);
+                                Instant Sstop = Instant.now();
+                                long Sdur = Duration.between(Sstart, Sstop).toMillis();
 
-                                Long hp = System.nanoTime();
-                                Alghoritms.HeapSort(b);
-                                Long hk = System.nanoTime();
-
+                                Instant Hstart = Instant.now();
+                                Alghoritms.HeapSort(e);
+                                Instant Hstop = Instant.now();
+                                long Hdur = Duration.between(Hstart, Hstop).toMillis();
 
                                 out.write(String.format(formatStr, n,
                                         Alghoritms.IcomparisionsCounter
@@ -170,10 +187,10 @@ public class Main {
                                         Alghoritms.QswapsCounter,
                                         Alghoritms.HswapsCounter,
 
-                                        ik-ip    //exetimes
-                                        , sk-sp    //exetimes
-                                        , qk - qp,    //exetimes
-                                        hk - hp    //exetimes
+                                        timeElapsed   //exetimes
+                                        , Sdur    //exetimes
+                                        , Qdur,    //exetimes
+                                        Hdur    //exetimes
                                 ));
                                 n += 100;
                             }
