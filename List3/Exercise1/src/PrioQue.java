@@ -50,7 +50,7 @@ class PrioQue {
 
             map.get(heap.get(0).val).remove(Integer.valueOf(0));
             map.get(heap.get(heap.size() - 1).val).remove(Integer.valueOf(heap.size() - 1));
-            map.get(heap.get(heap.size() - 1).val).add(Integer.valueOf(0));
+            map.get(heap.get(heap.size() - 1).val).add(0);
 
 
             Collections.swap(heap, 0, heap.size() - 1);
@@ -80,9 +80,9 @@ class PrioQue {
             if (heap.get(parent).priority > heap.get(i).priority) {
 
                 map.get(heap.get(parent).val).remove(Integer.valueOf(parent));
-                map.get(heap.get(parent).val).add(Integer.valueOf(i));
+                map.get(heap.get(parent).val).add(i);
                 map.get(heap.get(i).val).remove(Integer.valueOf(i));
-                map.get(heap.get(i).val).add(Integer.valueOf(parent));
+                map.get(heap.get(i).val).add(parent);
 
                 Collections.swap(heap, parent, i);
                 heapup(parent);
@@ -109,9 +109,9 @@ class PrioQue {
                 Collections.swap(heap, i, child);
 
                 map.get(heap.get(child).val).remove(Integer.valueOf(child));
-                map.get(heap.get(child).val).add(Integer.valueOf(i));
+                map.get(heap.get(child).val).add(i);
                 map.get(heap.get(i).val).remove(Integer.valueOf(i));
-                map.get(heap.get(i).val).add(Integer.valueOf(child));
+                map.get(heap.get(i).val).add(child);
 
                 heapdown(child);
             }
