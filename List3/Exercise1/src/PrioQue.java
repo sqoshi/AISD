@@ -1,22 +1,26 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 class PrioQue {
-    private ArrayList<Task> heap;
 
-    Map<Integer, ArrayList<Integer>> map = new HashMap<>();
+    private Map<Integer, ArrayList<Integer>> map = new HashMap<>();
+    private ArrayList<Task> heap;//zbior obiektow elementow taskow z ktorych tworze kopiec
 
-    public PrioQue() {
+    PrioQue() {
         heap = new ArrayList<>();
+
     }
 
 
-    public void insert(int val, int priority) {
+    void insert(int val, int priority) {
         Task task = new Task(val, priority);
         heap.add(task);
 
         ArrayList<Integer> integers = new ArrayList<>();
 
-        if(!map.containsKey(val)){
+        if (!map.containsKey(val)) {
             integers.add(heap.size() - 1);
             map.put(val, integers);
         } else {
@@ -28,9 +32,9 @@ class PrioQue {
         heapup(heap.size() - 1);
     }
 
-
     void Empty() {
-        if (heap.size() == 0) System.out.println("1");
+        if (heap.size() == 0)
+            System.out.println("1");
         else System.out.println("0");
     }
 
@@ -39,14 +43,13 @@ class PrioQue {
         else System.out.println(heap.get(0).val);
     }
 
-    public Task Pop() {
+    Task Pop() {
         if (heap.size() == 0) {
             System.out.println();
             return null;
-        }
-        else {
+        } else {
             Task deletedTask = heap.get(0);
-          //  System.out.println(heap.get(0).val);
+            //  System.out.println(heap.get(0).val);
 
             map.get(heap.get(0).val).remove(Integer.valueOf(0));
             map.get(heap.get(heap.size() - 1).val).remove(Integer.valueOf(heap.size() - 1));
@@ -62,26 +65,31 @@ class PrioQue {
 
     }
 
-    void Priority(int val, int prio){
-        ArrayList<Integer> vals = map.get(val);
+    void Priority(int val, int prio) {
+        ArrayList<Integer> vals = map.get(val);//need to heap up
         vals.forEach((e) -> {
-            heap.get(e).priority = heap.get(e).priority<prio ? prio : heap.get(e).priority;
+            //heap.get(e).priority = heap.get(e).priority > prio ? prio : heap.get(e).priority;
+            if (heap.get(e).priority > prio) {
+                heap.get(e).priority = prio;
+                heapup(e);
+
+            }
         });
     }
 
-
     void print() {
+
         heap.forEach((e) -> System.out.print(e.toString() + "\t"));
     }
 
-    void heapup(int i) {
+    private void heapup(int i) {
         if (i >= 0) {
             int parent = (i - 1) / 2;
             if (heap.get(parent).priority > heap.get(i).priority) {
 
                 map.get(heap.get(parent).val).remove(Integer.valueOf(parent));
                 map.get(heap.get(parent).val).add(i);
-                map.get(heap.get(i).val).remove(Integer.valueOf(i));
+                map.get(heap.get(i).val).remove(Integer.valueOf(new Integer(i)));
                 map.get(heap.get(i).val).add(parent);
 
                 Collections.swap(heap, parent, i);
@@ -90,17 +98,17 @@ class PrioQue {
         }
     }
 
-
     int higherPrio(int parent, int child) {
-        if (child < heap.size() && heap.get(child).priority < heap.get(parent).priority) return child;
+        if (child < heap.size() &&
+                heap.get(child).priority < heap.get(parent).priority)
+            return child;
         else return parent;
     }
 
-
     int getChild(int parent) {
+
         return higherPrio(higherPrio(parent, 2 * parent + 1), 2 * parent + 2);
     }
-
 
     void heapdown(int i) {
         if (heap.size() != 0) {
@@ -117,46 +125,6 @@ class PrioQue {
             }
         }
 
-    }
-
-    public static void main(String[] args) {
-        PrioQue que = new PrioQue();
-
-        while (true) {
-            String fun = new Scanner(System.in).nextLine();
-
-            switch (fun.split(" ")[0]) {
-                case "insert": {
-                    que.insert(Integer.parseInt(fun.split(" ")[1]),Integer.parseInt(fun.split(" ")[2]));
-                    break;
-                }
-                case "priority": {
-                    que.Priority(Integer.parseInt(fun.split(" ")[1]),Integer.parseInt(fun.split(" ")[2]));
-                    break;
-                }
-                case "empty": {
-                    que.Empty();
-                    break;
-                }
-                case "top": {
-                    que.Top();
-                    break;
-                }
-                case "pop": {
-                    que.Pop();
-                    break;
-                }
-                case "print": {
-                    que.print();
-                    break;
-                }
-                default: {
-                    System.out.println("Default");
-                }
-            }
-
-
-        }
     }
 
 

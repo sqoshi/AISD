@@ -12,6 +12,6 @@ class Task
 
     public String toString()
     {
-        return "Task val : "+ val +"\tPriority : "+ priority;
+        return "( "+ val +","+ priority+" )  ";
     }
 }
