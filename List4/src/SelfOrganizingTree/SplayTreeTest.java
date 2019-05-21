@@ -14,9 +14,13 @@ public class SplayTreeTest {
         spt.insert("a");
         spt.insert("e");
         spt.remove("a");
-        spt.load(new File("D:\\IdeaProjects\\aspell_wordlist.txt"), 1);
+        spt.load(new File("/home/piotr/IdeaProjects/AISD/List4/aspell_wordlist.txt"), 1);
         spt.print(spt.inorder());
-        spt.load(new File("D:\\IdeaProjects\\aspell_wordlist.txt"), 2);
+       // SplayTree.print2D(spt.root,0);
+        spt.load(new File("/home/piotr/IdeaProjects/AISD/List4/aspell_wordlist.txt"), 2);
+        System.out.println();
+
+        spt.print(spt.inorder());
 
     }
 }

@@ -1,0 +1,225 @@
+BST - aspell:
+Number of operations: 
+1
+test aspell_wordlist.txt
+After insert:
+Comparisons: 2419898622
+Modifications: 125975
+Cost: 2420024597
+After search:
+Comparisons: 2419755576
+Modifications: 0
+Cost: 2419755576
+After delete:
+Comparisons: 210379
+Modifications: 125716
+Cost: 336095
+
+
+BST permute aspell 1
+Number of operations: 
+1
+test aspell_wordlist.txt
+After insert:
+Comparisons: 2675006
+Modifications: 125975
+Cost: 2800981
+After search:
+Comparisons: 2515661
+Modifications: 0
+Cost: 2515661
+After delete:
+Comparisons: 2509314
+Modifications: 105579
+Cost: 2614893
+
+BST - permute aspell 2;
+Number of operations: 
+1
+test aspell_wordlist.txt
+After insert:
+Comparisons: 2779879
+Modifications: 125975
+Cost: 2905854
+After search:
+Comparisons: 2620168
+Modifications: 0
+Cost: 2620168
+After delete:
+Comparisons: 2621530
+Modifications: 105296
+Cost: 2726826
+
+bst lotr
+Number of operations: 
+1
+test lotr.txt
+After insert:
+Comparisons: 156683032
+Modifications: 187687
+Cost: 156870719
+After search:
+Comparisons: 3974093
+Modifications: 0
+Cost: 3974093
+After delete:
+Comparisons: 3091112
+Modifications: 354817
+Cost: 3445929
+
+rbt aspell
+Number of operations: 
+1
+test aspell_wordlist.txt
+After insert:
+Comparisons: 5000235
+Modifications: 798768
+Cost: 5799003
+After search:
+Comparisons: 2033173
+Modifications: 0
+Cost: 2033173
+After delete:
+Comparisons: 3251027
+Modifications: 401167
+Cost: 3652194
+
+rbt permutedaspell
+Number of operations: 
+1
+test aspell_wordlist.txt
+After insert:
+Comparisons: 2906673
+Modifications: 466484
+Cost: 3373157
+After search:
+Comparisons: 2024650
+Modifications: 0
+Cost: 2024650
+After delete:
+Comparisons: 3065960
+Modifications: 368929
+Cost: 3434889
+
+bst kjb.txt
+Number of operations: 
+1
+test KJB.txt
+After insert:
+Comparisons: 4366127812
+Modifications: 789903
+Cost: 4366917715
+After search:
+Comparisons: 15614424
+Modifications: 0
+Cost: 15614424
+After delete:
+Comparisons: 11452932
+Modifications: 1550942
+Cost: 13003874
+
+//rbt kjb
+Number of operations: 
+1
+test KJB.txt
+After insert:
+Comparisons: 29949003
+Modifications: 4868528
+Cost: 34817531
+After search:
+Comparisons: 7940869
+Modifications: 0
+Cost: 7940869
+After delete:
+Comparisons: 22671826
+Modifications: 3128035
+Cost: 25799861
+
+
+//lotr rbt
+Number of operations: 
+1
+test lotr.txt
+After insert:
+Comparisons: 6131997
+Modifications: 1124494
+Cost: 7256491
+After search:
+Comparisons: 1892136
+Modifications: 0
+Cost: 1892136
+After delete:
+Comparisons: 4968566
+Modifications: 728466
+Cost: 5697032
+
+
+//splay aspell
+Number of operations: 
+1
+test aspell_wordlist.txt
+After insert:
+Comparisons: 688939
+Modifications: 558115
+Cost: 1247054
+After search:
+Comparisons: 1584400
+Modifications: 1090210
+Cost: 2674610
+After delete:
+Comparisons: 1237488
+Modifications: 937237
+Cost: 2174725
+
+splay permuted
+Number of operations: 
+1
+test aspell_wordlist.txt
+After insert:
+Comparisons: 8164785
+Modifications: 5552601
+Cost: 13717386
+After search:
+Comparisons: 8463308
+Modifications: 5709120
+Cost: 14172428
+After delete:
+Comparisons: 8465034
+Modifications: 5116724
+Cost: 13581758
+
+splaykjb
+Number of operations: 
+1
+test KJB.txt
+After insert:
+Comparisons: 34548066
+Modifications: 23718427
+Cost: 58266493
+After search:
+Comparisons: 18280689
+Modifications: 12606428
+Cost: 30887117
+After delete:
+Comparisons: 468999665
+Modifications: 13773970
+Cost: 482773635
+
+lotr splay
+Number of operations: 
+1
+test lotr.txt
+After insert:
+Comparisons: 8842666
+Modifications: 6058117
+Cost: 14900783
+After search:
+Comparisons: 5368348
+Modifications: 3678270
+Cost: 9046618
+After delete:
+Comparisons: 9710030
+Modifications: 3914942
+Cost: 13624972
+
+

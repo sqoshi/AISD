@@ -81969,8 +81969,8 @@ nihilist
 nihilist's
 nihilistic
 nihilists
-nil
-nil's
+null
+null's
 nimbi
 nimble
 nimbleness
