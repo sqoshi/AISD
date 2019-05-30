@@ -5,7 +5,7 @@ public class Main {
             if (args[i].equals("--size")) {
                 try {
                     int k = Integer.parseInt(args[i + 1]);
-                    if (k < 1 || k > 16) {
+                    if (k < 1 || k >= 16) {
                         System.out.println(" kis not in <1,16> range");
                     }
 

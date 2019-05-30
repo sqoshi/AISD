@@ -35,11 +35,9 @@ public class Graph {
                     if (differAtOneBitPos(j, i)) {
                         adjmatrix[i][j] = 1;
                         int l = maxFromHandZ(i, j);
-                        // System.out.println(l + " is max");
                         for (int m = 1; m <= (int) Math.pow(2, l); m++) {
                             Lotery.add(m);
                             Collections.shuffle(Lotery);
-                            // System.out.println(m);
                         }
                         cap[i][j] = Lotery.get(0);
                     }
@@ -47,9 +45,9 @@ public class Graph {
 
             }
         }
-        maxFlow = fordFulkerson(cap, 0, (int) Math.pow(2, k) - 1);
+        maxFlow = EdmondKarp(cap, 0, (int) Math.pow(2, k) - 1);
         endTime = System.currentTimeMillis();
-        elapsedTime =(double) (endTime - startTime)/1000;
+        elapsedTime = (double) (endTime - startTime) / 1000;
 
     }
 
@@ -62,7 +60,7 @@ public class Graph {
         return isPowerOfTwo(a ^ b);
     }
 
-    public static void printer(int[][] matrix) {
+    public static void printer(double[][] matrix) {
 
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
@@ -113,7 +111,7 @@ public class Graph {
         return (visited[t]);
     }
 
-    int fordFulkerson(int[][] graph, int s, int t) {
+    int EdmondKarp(int[][] graph, int s, int t) {
         int u, v;
         int V = (int) Math.pow(2, k);
 
@@ -146,8 +144,6 @@ public class Graph {
             max_flow += path_flow;
         }
 
-        //printer(rGraph);
-        System.out.println();
         return max_flow;
     }
 
