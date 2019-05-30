@@ -6,17 +6,20 @@ import java.util.LinkedList;
 public class Graph {
     public int maxFlow;
     public int paths;
-    public double time;
     int k;
-   // final int V = (int) Math.pow(2, k);
-    int cap[][];
+    int breadthpaths = 0;
+    int[][] cap;
     ArrayList<Integer> Lotery;
     int[][] adjmatrix;
     int[][] flows;
     int[][] residualCap;
     int[] P;
+    long startTime;
+    double elapsedTime;
+    long endTime;
 
     public Graph(int k) {
+        startTime = System.currentTimeMillis();
         this.k = k;
 
         P = new int[(int) Math.pow(2, k)];
@@ -32,7 +35,7 @@ public class Graph {
                     if (differAtOneBitPos(j, i)) {
                         adjmatrix[i][j] = 1;
                         int l = maxFromHandZ(i, j);
-                        System.out.println(l + " is max");
+                        // System.out.println(l + " is max");
                         for (int m = 1; m <= (int) Math.pow(2, l); m++) {
                             Lotery.add(m);
                             Collections.shuffle(Lotery);
@@ -44,26 +47,9 @@ public class Graph {
 
             }
         }
-        //   for (int i = 0; i <= Math.pow(2, k) - 1; i++) {
-        //       for (int j = 0; j <= Math.pow(2, k) - 1; j++) {
-        //           residualCap[i][j] = cap[i][j] - flows[i][j];
-//
-        //       }
-        //   }
-//
-
-        printer(adjmatrix);
-        System.out.println();
-        printer(cap);
-        System.out.println();
-
-        System.out.println();
-        System.out.println();
-        System.out.println(fordFulkerson(cap,0,7));
-        System.out.println();
-        //breadthFirst(0, 7);
-        //   System.out.println(Lotery(2));
-
+        maxFlow = fordFulkerson(cap, 0, (int) Math.pow(2, k) - 1);
+        endTime = System.currentTimeMillis();
+        elapsedTime =(double) (endTime - startTime)/1000;
 
     }
 
@@ -76,9 +62,31 @@ public class Graph {
         return isPowerOfTwo(a ^ b);
     }
 
-    boolean bfs(int rGraph[][], int s, int t, int parent[]) {
-        int V=(int) Math.pow(2, k);
-        boolean visited[] = new boolean[V];
+    public static void printer(int[][] matrix) {
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println(); //change line on console as row comes to end in the matrix.
+        }
+    }
+
+    public double getTime() {
+        return elapsedTime;
+    }
+
+    public int getMaxFlow() {
+        return maxFlow;
+    }
+
+    public int getBreadthpaths() {
+        return breadthpaths;
+    }
+
+    boolean bfs(int[][] rGraph, int s, int t, int[] parent) {
+        int V = (int) Math.pow(2, k);
+        boolean[] visited = new boolean[V];
         for (int i = 0; i < V; ++i)
             visited[i] = false;
 
@@ -102,12 +110,12 @@ public class Graph {
         }
 
 
-        return (visited[t] == true);
+        return (visited[t]);
     }
 
-    int fordFulkerson(int graph[][], int s, int t) {
+    int fordFulkerson(int[][] graph, int s, int t) {
         int u, v;
-        int V=(int) Math.pow(2, k);
+        int V = (int) Math.pow(2, k);
 
         int[][] rGraph = new int[V][V];
 
@@ -120,6 +128,7 @@ public class Graph {
         int max_flow = 0;
 
         while (bfs(rGraph, s, t, parent)) {
+            breadthpaths++;
 
             int path_flow = Integer.MAX_VALUE;
             for (v = t; v != s; v = parent[v]) {
@@ -137,9 +146,10 @@ public class Graph {
             max_flow += path_flow;
         }
 
+        //printer(rGraph);
+        System.out.println();
         return max_flow;
     }
-
 
     int maxFromHandZ(int v, int u) {
         return Math.max(H(v), Math.max(H(u), Math.max(Z(v), Z(u))));
@@ -165,16 +175,5 @@ public class Graph {
             n /= 2;
         }
         return (count1);
-    }
-
-
-    public void printer(int[][] matrix) {
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.print(matrix[i][j] + " ");
-            }
-            System.out.println(); //change line on console as row comes to end in the matrix.
-        }
     }
 }
