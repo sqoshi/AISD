@@ -7,12 +7,13 @@ public class BipartiteGraph {
     LinkedList<Integer>[] adjList;
     int size;
 
+
     public BipartiteGraph(int k, int m) {
         int randomNum;
         Random Random = new Random();
         size = (int) Math.pow(2, k + 1) + 2;
         adjList = new LinkedList[size];
-
+//BUILDING FLOW NETWORK ON ADJLIST
         for (int i = 0; i < size; i++) {
             adjList[i] = new LinkedList<>();
         }
@@ -24,14 +25,19 @@ public class BipartiteGraph {
         }
         for (int i = 1; i <= Math.pow(2, k); ++i) {
             ArrayList<Integer> numbers = new ArrayList<Integer>();
-            for (int j = 1; j <= m; j++) {
+            ArrayList<Integer> NUMBERS = new ArrayList<Integer>();
+
+            while (adjList[i].size() != 3) {
                 randomNum = (int) (Random.nextInt((int) (Math.pow(2, k))) + Math.pow(2, k) + 1);
-                if (randomNum != i) {
+                while (!NUMBERS.contains(randomNum)) {
+                    NUMBERS.add(randomNum);
+                    if (randomNum != i) {
 
-                    if (!numbers.contains(randomNum)) {
-                        numbers.add(randomNum);
+                        while (!numbers.contains(randomNum)) {
+                            numbers.add(randomNum);
 
-                        adjList[i].add(randomNum);
+                            adjList[i].add(randomNum);
+                        }
                     }
                 }
             }
