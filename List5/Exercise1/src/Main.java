@@ -10,9 +10,8 @@ public class Main {
                     }
 
                     System.out.println(" k belong to 1,16");
-                 //Graph graph = new Graph(k);
-                //   System.out.println(graph.getBreadthpaths());
-                Simulation.S1(10);
+                    Graph graph = new Graph(k);
+                    //Simulation.S1(10);
 
 
                 } catch (Exception e) {

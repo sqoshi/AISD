@@ -1,5 +1,4 @@
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,7 +13,6 @@ public class Simulation {
         int[][] breadthsgrouped;
         int[][] flows;
         double[][] times;
-        double[][] OveralAverage;
         Graph graph;
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
@@ -32,10 +30,17 @@ public class Simulation {
                 breadthsgrouped[k][i] = graph.getBreadthpaths();
                 flows[k][i] = graph.getMaxFlow();
                 times[k][i] = graph.getTime();
+                System.out.println("K: " + k + " | I: " + i + " | B: "
+                        + graph.getBreadthpaths() + " | F: "
+                        + graph.getMaxFlow() + " | T: " + graph.getTime());
+
             }
             double BreadthPatsAverageFork = Arrays.stream(breadthsgrouped[k]).average().getAsDouble();
             double FlowAverageFork = Arrays.stream(flows[k]).average().getAsDouble();
             double TimeAverageFork = Arrays.stream(times[k]).average().getAsDouble();
+            System.out.println("AVERAGE K: " + k + " | B: "
+                    + BreadthPatsAverageFork + " | F: "
+                    + FlowAverageFork + " | T: " + TimeAverageFork);
 
             writer.append(String.valueOf(k)).append(" ").
                     append(String.valueOf(BreadthPatsAverageFork)).append(" ").
