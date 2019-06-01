@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -7,6 +6,7 @@ public class BipartiteGraph {
     int[][] cap;
     LinkedList<Integer>[] adjList;
     int size;
+    int k;
 
 
     public BipartiteGraph(int k, int m) {
@@ -14,6 +14,8 @@ public class BipartiteGraph {
         Random Random = new Random();
         size = (int) Math.pow(2, k + 1) + 2;
         adjList = new LinkedList[size];
+        this.k = k;
+        cap = new int[size][size];
 
         //BUILDING FLOW NETWORK ON ADJLIST
         for (int i = 0; i < size; i++) {
@@ -21,9 +23,11 @@ public class BipartiteGraph {
         }
         for (int i = 1; i <= Math.pow(2, k); ++i) {
             adjList[0].add(i);// MAKIN SITUATION THAT SOURCE 0 LEADS TO ALL 1-2^k vertixes
+            cap[0][i]=1;
         }
         for (int i = (int) Math.pow(2, k) + 1; i <= (int) Math.pow(2, k + 1); ++i) {
             adjList[i].add(size - 1);// MAKIN SITUATION THAT ALL vertixes FROM V2 LEADS TO destination T size-1
+            cap[i][size-1]=1;
         }
         for (int i = 1; i <= Math.pow(2, k); ++i) {
             ArrayList<Integer> numbers = new ArrayList<Integer>();
@@ -39,68 +43,22 @@ public class BipartiteGraph {
                             numbers.add(randomNum);
 
                             adjList[i].add(randomNum);
+                            cap[i][randomNum]=1;
                         }
                     }
                 }
             }
         }
+
+
     }
-    public void BFS(int s)
-    {
-        boolean visited[] = new boolean[size];
-
-        LinkedList<Integer> queue = new LinkedList<Integer>();
-
-        visited[s]=true;
-        queue.add(s);
-
-        while (queue.size() != 0)
-        {
-            s = queue.poll();
-            System.out.print(s+" ");
-
-            Iterator<Integer> i = adjList[s].listIterator();
-            while (i.hasNext())
-            {
-                int n = i.next();
-                if (!visited[n])
-                {
-                    visited[n] = true;
-                    queue.add(n);
-                }
-            }
-        }
-    }
-////      cap = new int[(int) (Math.pow(2, k + 1) + 2)][(int) (Math.pow(2, k + 1) + 2)];
-    //    // 2 zbiory po 2^k + sink i source
-    //    Random generator = new Random();
-    //    int random;
-
-    //    for (int j = 1; j < Math.pow(2, k) + 1; j++)
-    //        cap[0][j] = 1;
-
-    //    for (int j = (int) (Math.pow(2, k) + 1); j < Math.pow(2, k + 1) + 1; j++)
-    //        cap[j][(int) (Math.pow(2, k + 1) + 1)] = 1;
-
-    //    for (int j = 1; j < Math.pow(2, k) + 1; j++) {
-    //        random = (int) (generator.nextInt((int) (Math.pow(2, k))) + Math.pow(2, k) + 1);
-
-    //        for (int a = 0; a < m; a++) {
-    //            while (cap[j][random] != 0)
-    //                random = (int) (generator.nextInt((int) (Math.pow(2, k))) + Math.pow(2, k) + 1);
-    //            cap[j][random] = 1;
-    //        }
-    //    }
-
-    //}
 
     public static void main(String[] args) {
-        BipartiteGraph bipartiteGraph = new BipartiteGraph(3, 2);
+        BipartiteGraph bipartiteGraph = new BipartiteGraph(3, 3);
         printGraph(bipartiteGraph);
-        bipartiteGraph.BFS(8);
+        //bipartiteGraph.BFS(bipartiteGraph.adjList,0,2, 3);
 
     }
-
 
     public static void printer(int[][] matrix) {
 
@@ -122,6 +80,8 @@ public class BipartiteGraph {
             System.out.println("\n");
         }
     }
+
+
 
     public int[][] getCap() {
         return cap;
