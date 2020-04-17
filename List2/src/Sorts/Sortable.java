@@ -1,6 +1,6 @@
 package Sorts;
 
-public interface Alghoritms {
+public interface Sortable {
     void sort(int[] array,boolean desc);
 
 }

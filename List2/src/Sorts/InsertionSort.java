@@ -1,19 +1,26 @@
 package Sorts;
 
-public class InsertionSort extends AbstractSort implements Alghoritms {
+public class InsertionSort extends AbstractSort implements Sortable {
+    public static void main(String[] args) {
+        InsertionSort s = new InsertionSort();
+        s.sort(new int[]{4, 3, 2, 10, 12, 1, 5, 6}, false);
+    }
+
     @Override
     public void sort(int[] array, boolean desc) {
-        int[] clonedArray = array.clone();
-        print(clonedArray, "Before " + this.getClass().getSimpleName(), desc);
-        for (int i = 1; i < clonedArray.length; ++i) {
-            int key = clonedArray[i];
-            int j = i - 1;
-            while (j >= 0 && clonedArray[j] > key) {
-                clonedArray[j + 1] = clonedArray[j];
-                j = j - 1;
+        int[] a = array.clone();
+        print(a, "Before " + this.getClass().getSimpleName(), desc);
+        for (int i = 1; i < a.length; i++) {
+            int j = i;
+            while (a[j] <= a[j - 1]) {
+                print(a, "Step: " + this.getClass().getSimpleName(), desc);
+                int temp = a[j];
+                a[j] = a[j - 1];
+                a[j - 1] = temp;
+                if (j > 1)
+                    j -= 1;
             }
-            clonedArray[j + 1] = key;
         }
-        print(clonedArray, "After " + this.getClass().getSimpleName(), desc);
+        print(a, "After " + this.getClass().getSimpleName(), desc);
     }
 }

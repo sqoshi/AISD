@@ -1,6 +1,6 @@
 # Alghoritms and data structures
 (Average time, comparisions, swaps, time complexity, compute complexity: graphs,diagrams,plots)
-1.Alghoritms
+1. Alghoritms
 	1. Sorts:
 		- Selection
 		- Insertion
